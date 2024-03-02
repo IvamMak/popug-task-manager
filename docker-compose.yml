@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mysql:
+    container_name: auth-service-db
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: user
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mysql
