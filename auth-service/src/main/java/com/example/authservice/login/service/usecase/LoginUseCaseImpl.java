@@ -1,6 +1,6 @@
 package com.example.authservice.login.service.usecase;
 
-import com.example.authservice.jwt.rest.usecase.JwtUseCase;
+import com.example.authservice.login.service.JwtService;
 import com.example.authservice.login.exception.UserLoginException;
 import com.example.authservice.login.rest.model.LoginRequest;
 import com.example.authservice.login.rest.model.LoginResponse;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class LoginUseCaseImpl implements LoginUseCase {
-    private final JwtUseCase jwtUseCase;
+    private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
 
@@ -30,7 +30,7 @@ public class LoginUseCaseImpl implements LoginUseCase {
     }
 
     private LoginResponse getToken(Authentication authenticate) {
-        String token = jwtUseCase.generateToken(authenticate.getName());
+        String token = jwtService.generateToken(authenticate.getName());
         return new LoginResponse(token);
     }
 }

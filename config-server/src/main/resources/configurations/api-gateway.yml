@@ -18,6 +18,11 @@ spring:
           predicates:
             - Path=/api/user/**
           filters: AuthenticationFilter
+        - id: task-service
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/task/**
+          filters: AuthenticationFilter
   main:
     allow-bean-definition-overriding: true
 

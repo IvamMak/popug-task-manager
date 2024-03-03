@@ -1,6 +1,5 @@
-package com.example.authservice.jwt.service.usecase;
+package com.example.authservice.login.service;
 
-import com.example.authservice.jwt.rest.usecase.JwtUseCase;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -15,20 +14,13 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class JwtUseCaseImpl implements JwtUseCase {
+public class JwtService {
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
-    @Override
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, username);
     }
-
-    @Override
-    public void validateToken(final String token) {
-        Jwts.parser().setSigningKey(getSignKey()).build().parseClaimsJws(token);
-    }
-
 
     private String createToken(Map<String, Object> claims, String userName) {
         return Jwts.builder()

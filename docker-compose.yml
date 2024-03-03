@@ -10,6 +10,15 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: user
 
+  mysql-task-service:
+    container_name: task-service-db
+    image: mysql
+    ports:
+      - "3336:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: task
+
   auth-service:
     build: ./auth-service
     ports:

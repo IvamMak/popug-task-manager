@@ -2,20 +2,19 @@ package com.example.apigateway.filter;
 
 import com.example.apigateway.filter.exception.AuthorizationHeaderMissedException;
 import com.example.apigateway.filter.exception.InvalidTokenException;
+import com.example.apigateway.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
-    private static final String AUTH_SERVICE_VALIDATION = "http://AUTH-SERVICE/api/token/validate?token=%s";
     @Autowired
     private RouteValidator routeValidator;
     @Autowired
-    private RestTemplate restTemplate;
+    private JwtService jwtService;
 
     @Override
     public GatewayFilter apply(Config config) {
@@ -29,7 +28,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     authHeader = authHeader.substring(7);
                 }
                 try {
-                    restTemplate.getForObject(String.format(AUTH_SERVICE_VALIDATION, authHeader), String.class);
+                    jwtService.validateToken(authHeader);
                 } catch (Exception e) {
                     throw new InvalidTokenException();
                 }
