@@ -1,5 +1,6 @@
 package com.example.authservice.user.rest;
 
+import com.example.authservice.user.domain.User;
 import com.example.authservice.user.exception.UserAlreadyExistException;
 import com.example.authservice.user.rest.model.CreateUserRequest;
 import com.example.authservice.user.rest.usecase.CreateUserUseCase;
@@ -14,8 +15,8 @@ public class CreateUserController {
     private final CreateUserUseCase createUserUseCase;
 
     @PostMapping
-    public void createUser(@RequestBody CreateUserRequest request) {
-        createUserUseCase.create(request);
+    public ResponseEntity<User> createUser(@RequestBody CreateUserRequest request) {
+        return ResponseEntity.ok(createUserUseCase.create(request));
     }
 
     @ExceptionHandler(UserAlreadyExistException.class)
