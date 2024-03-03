@@ -14,6 +14,8 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
+  kafka:
+    bootstrap-servers: http://localhost:9092
 
 eureka:
   instance:
