@@ -12,5 +12,17 @@ spring:
           uri: http://localhost:8090
           predicates:
             - Path=/api/login/**
+          filters: AuthenticationFilter
+        - id: auth-service-2
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/user/**
+          filters: AuthenticationFilter
   main:
     allow-bean-definition-overriding: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

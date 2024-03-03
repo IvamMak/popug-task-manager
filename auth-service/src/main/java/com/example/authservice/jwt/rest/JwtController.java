@@ -14,8 +14,7 @@ public class JwtController {
     private final JwtUseCase jwtUseCase;
 
     @GetMapping("/validate")
-    public void validateToken(@RequestParam(name = "username") String username,
-                              @RequestParam(name = "token") String token) {
+    public void validateToken(@RequestParam(name = "token") String token) {
         jwtUseCase.validateToken(token);
     }
 }
