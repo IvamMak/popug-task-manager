@@ -4,5 +4,5 @@ import com.example.taskservice.business.task.domain.Task;
 import com.example.taskservice.business.task.rest.model.CreateTaskRequest;
 
 public interface CreateTaskUseCase {
-    Task create(String name, CreateTaskRequest request);
+    Task create(CreateTaskRequest request);
 }

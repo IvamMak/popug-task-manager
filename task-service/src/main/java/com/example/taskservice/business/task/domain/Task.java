@@ -14,9 +14,9 @@ public class Task {
     private TaskStatus status;
     private Long userId;
 
-    public Task(String description, TaskStatus status, List<Long> userIds) {
+    public Task(String description, List<Long> userIds) {
         this.description = description;
-        this.status = status;
+        this.status = TaskStatus.IN_PROGRESS;
         this.userId = getRandomId(userIds);
     }
 
