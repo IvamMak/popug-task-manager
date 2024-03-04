@@ -15,8 +15,9 @@ class UserAdapter implements UserDao {
     private final ModelMapper mapper;
 
     @Override
-    public void save(User user) {
-        repository.save(mapper.map(user, UserEntity.class));
+    public User save(User user) {
+        UserEntity userEntity = repository.save(mapper.map(user, UserEntity.class));
+        return mapper.map(userEntity, User.class);
     }
 
     @Override

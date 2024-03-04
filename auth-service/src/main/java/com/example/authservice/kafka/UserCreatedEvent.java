@@ -1,4 +1,4 @@
-package com.example.authservice.event;
+package com.example.authservice.kafka;
 
 import com.example.authservice.user.domain.UserRole;
 import lombok.Data;
