@@ -4,14 +4,13 @@ import com.example.taskservice.business.task.domain.Task;
 import com.example.taskservice.business.task.rest.model.CompleteTaskRequest;
 import com.example.taskservice.business.task.rest.model.CreateTaskRequest;
 import com.example.taskservice.business.task.rest.usecase.AssignTaskUseCase;
-import com.example.taskservice.business.task.rest.usecase.ChangeTaskStatusUseCase;
+import com.example.taskservice.business.task.rest.usecase.CompleteTaskUseCase;
 import com.example.taskservice.business.task.rest.usecase.CreateTaskUseCase;
 import com.example.taskservice.business.task.service.exception.NotCompletedTaskWasNotFindException;
 import com.example.taskservice.business.task.service.exception.SaveTaskException;
 import com.example.taskservice.business.task.service.exception.WrongTaskUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
     private final AssignTaskUseCase assignTaskUseCase;
     private final CreateTaskUseCase createTaskUseCase;
-    private final ChangeTaskStatusUseCase changeTaskStatusUseCase;
+    private final CompleteTaskUseCase completeTaskUseCase;
 
     @PostMapping
     public ResponseEntity<Task> create(@RequestBody CreateTaskRequest request) {
@@ -38,7 +37,7 @@ public class TaskController {
     @PatchMapping("/complete")
     public ResponseEntity<Task> complete(Authentication authentication,
                                          @RequestBody CompleteTaskRequest request) {
-        return ResponseEntity.ok(changeTaskStatusUseCase.complete(authentication.getName(), request));
+        return ResponseEntity.ok(completeTaskUseCase.complete(authentication.getName(), request));
     }
 
     @ExceptionHandler(SaveTaskException.class)

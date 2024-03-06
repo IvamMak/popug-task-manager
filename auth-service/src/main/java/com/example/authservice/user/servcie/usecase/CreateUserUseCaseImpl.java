@@ -14,6 +14,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 @Service
@@ -33,7 +34,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .map(userRequest -> passwordEncoder.encode(userRequest.getPassword()))
                 .map(password -> new User(request.getUserRole(), password, request.getUsername()))
                 .map(dao::save)
-                .peek(user -> sendMessage(template, user))
+                .peek(user -> sendEvent(user))
                 .findFirst()
                 .get();
     }
@@ -45,11 +46,9 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 });
     }
 
-    private CommandLineRunner sendMessage(KafkaTemplate<String, String> template, User user) {
-        UserCreatedEvent createdEvent = new UserCreatedEvent();
-        createdEvent.setId(user.getId());
-        createdEvent.setUsername(user.getUsername());
-        createdEvent.setUserRole(user.getUserRole());
+    private CommandLineRunner sendEvent(User user) {
+        UserCreatedEvent createdEvent = new UserCreatedEvent(user.getId(), user.getUsername(), user.getUserRole(),
+                LocalDateTime.now());
         return args -> template.send("user.created", objectMapper.writeValueAsString(createdEvent));
     }
 }
