@@ -9,6 +9,7 @@ import com.example.authservice.user.servcie.FindUserService;
 import com.example.authservice.user.servcie.dao.UserDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,9 +47,10 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 });
     }
 
-    private CommandLineRunner sendEvent(User user) {
+    @SneakyThrows
+    private void sendEvent(User user) {
         UserCreatedEvent createdEvent = new UserCreatedEvent(user.getId(), user.getUsername(), user.getUserRole(),
                 LocalDateTime.now());
-        return args -> template.send("user.created", objectMapper.writeValueAsString(createdEvent));
+        template.send("user.created", objectMapper.writeValueAsString(createdEvent));
     }
 }

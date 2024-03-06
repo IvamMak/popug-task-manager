@@ -8,7 +8,7 @@ import com.example.taskservice.business.task.service.event.TaskCreatedEvent;
 import com.example.taskservice.business.user.servcie.FindUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
+import lombok.SneakyThrows;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +34,9 @@ public class CreateTaskUseCaseImpl implements CreateTaskUseCase {
         return save;
     }
 
-    private CommandLineRunner sendMessage(Task task) {
+    @SneakyThrows
+    private void sendMessage(Task task) {
         TaskCreatedEvent taskCreatedEvent = new TaskCreatedEvent(task.getId(), task.getUserId(), LocalDateTime.now());
-        return args -> template.send("task.created", mapper.writeValueAsString(taskCreatedEvent));
+        template.send("task.created", mapper.writeValueAsString(taskCreatedEvent));
     }
 }

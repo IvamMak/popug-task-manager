@@ -12,6 +12,7 @@ import com.example.taskservice.business.user.servcie.FindUserService;
 import com.example.taskservice.business.user.servcie.exception.UserNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -52,8 +53,9 @@ public class CompleteTaskUseCaseImpl implements CompleteTaskUseCase {
         }
     }
 
-    private CommandLineRunner sendEvent(Task task) {
+    @SneakyThrows
+    private void sendEvent(Task task) {
         TaskCompletedEvent taskCompletedEvent = new TaskCompletedEvent(task.getId(), LocalDateTime.now());
-        return args -> template.send("task.completed", objectMapper.writeValueAsString(taskCompletedEvent));
+        template.send("task.completed", objectMapper.writeValueAsString(taskCompletedEvent));
     }
 }
