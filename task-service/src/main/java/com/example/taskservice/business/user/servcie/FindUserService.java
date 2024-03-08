@@ -21,7 +21,7 @@ public class FindUserService {
         return dao.find(userId);
     }
 
-    public List<Long> findAllPopugsIds() {
+    public List<String> findAllPopugsIds() {
         return dao.findAllPopugs();
     }
 }

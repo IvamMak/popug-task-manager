@@ -13,5 +13,5 @@ public interface UserDao {
 
     Optional<User> find(Long userId);
 
-    List<Long> findAllPopugs();
+    List<String> findAllPopugs();
 }

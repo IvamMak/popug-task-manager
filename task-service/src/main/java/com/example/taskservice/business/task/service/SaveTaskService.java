@@ -14,7 +14,7 @@ public class SaveTaskService {
     private final FindUserService findUserService;
 
     public Task save(Task task) {
-        return findUserService.find(task.getUserId())
+        return findUserService.find(task.getExecutorId())
                 .map(user -> dao.save(task, user))
                 .orElseThrow(SaveTaskException::new);
     }

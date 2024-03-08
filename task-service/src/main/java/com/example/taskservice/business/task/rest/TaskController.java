@@ -24,8 +24,8 @@ public class TaskController {
     private final CompleteTaskUseCase completeTaskUseCase;
 
     @PostMapping
-    public ResponseEntity<Task> create(@RequestBody CreateTaskRequest request) {
-        return ResponseEntity.ok(createTaskUseCase.create(request));
+    public ResponseEntity<Task> create(Authentication authentication, @RequestBody CreateTaskRequest request) {
+        return ResponseEntity.ok(createTaskUseCase.create(authentication.getName(), request));
     }
 
     @PatchMapping("/assign")

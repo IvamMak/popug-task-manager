@@ -19,7 +19,7 @@ class UserAdapter implements UserDao {
 
     @Override
     public User save(User user) {
-        repository.save(mapper.map(user, UserEntity.class));
+        repository.save(toEntity(user));
         return user;
     }
 
@@ -36,9 +36,17 @@ class UserAdapter implements UserDao {
     }
 
     @Override
-    public List<Long> findAllPopugs() {
+    public List<String> findAllPopugs() {
         return repository.findAllPopugs().stream()
-                .map(UserEntity::getId)
+                .map(UserEntity::getPublicId)
                 .collect(Collectors.toList());
+    }
+
+    private UserEntity toEntity(User user) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserRole(user.getUserRole());
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPublicId(user.getPublicId());
+        return userEntity;
     }
 }

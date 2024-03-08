@@ -18,6 +18,8 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(name = "public_id")
+    private String publicId;
     @Column(name = "Username")
     private String username;
     @Column(name = "User_Role")

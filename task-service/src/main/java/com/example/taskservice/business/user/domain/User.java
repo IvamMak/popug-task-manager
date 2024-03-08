@@ -1,12 +1,12 @@
 package com.example.taskservice.business.user.domain;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 public class User {
-    private Long id;
+    private String publicId;
     private String username;
     private UserRole userRole;
 }

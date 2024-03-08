@@ -16,9 +16,11 @@ import java.util.Objects;
 @Table(name = "task")
 public class TaskEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(name = "public_id")
+    private String publicId;
     @Column(name = "description")
     private String description;
     @Column(name = "status")

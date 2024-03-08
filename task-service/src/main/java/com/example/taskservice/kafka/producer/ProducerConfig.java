@@ -8,6 +8,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class ProducerConfig {
@@ -29,6 +30,15 @@ public abstract class ProducerConfig {
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate(ProducerFactory<String, String> producerFactory) {
+        return new KafkaTemplate<>(producerFactory);
+    }
+    @Bean
+    public ProducerFactory<String, List<String>> batchProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfig());
+    }
+
+    @Bean
+    public KafkaTemplate<String, List<String>> batchKafkaTemplate(ProducerFactory<String, List<String>> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 }

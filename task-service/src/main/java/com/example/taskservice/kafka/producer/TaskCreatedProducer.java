@@ -8,9 +8,5 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class TaskCreatedProducer extends ProducerConfig {
 
-    @Bean
-    public NewTopic taskCreatedTopic() {
-        return TopicBuilder.name("task.created")
-                .build();
-    }
+
 }
