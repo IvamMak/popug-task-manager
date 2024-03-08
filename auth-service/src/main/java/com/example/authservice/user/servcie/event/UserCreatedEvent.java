@@ -1,6 +1,5 @@
-package com.example.authservice.kafka.event;
+package com.example.authservice.user.servcie.event;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -8,9 +7,8 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-public final class Event {
+public final class UserCreatedEvent {
     private LocalDateTime timeStamp;
     private String eventName;
-    private EventPayload eventPayload;
-
+    private UserCreatedPayload eventPayload;
 }

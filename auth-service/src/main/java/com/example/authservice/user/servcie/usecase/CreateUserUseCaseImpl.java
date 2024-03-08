@@ -1,7 +1,7 @@
 package com.example.authservice.user.servcie.usecase;
 
-import com.example.authservice.kafka.UserCreatedPayload;
-import com.example.authservice.kafka.event.Event;
+import com.example.authservice.user.servcie.event.UserCreatedPayload;
+import com.example.authservice.user.servcie.event.UserCreatedEvent;
 import com.example.authservice.kafka.event.Events;
 import com.example.authservice.kafka.event.Topics;
 import com.example.authservice.user.domain.User;
@@ -52,7 +52,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private void sendEvent(User user) {
         UserCreatedPayload userCreatedPayload =
                 new UserCreatedPayload(user.getPublicId(), user.getUsername(), user.getUserRole());
-        Event event = new Event(LocalDateTime.now(), Events.USER_CREATED_V1, userCreatedPayload);
-        template.send(Topics.USER_STREAM, objectMapper.writeValueAsString(event));
+        UserCreatedEvent userCreatedEvent = new UserCreatedEvent(LocalDateTime.now(), Events.USER_CREATED_V1, userCreatedPayload);
+        template.send(Topics.USER_STREAM, objectMapper.writeValueAsString(userCreatedEvent));
     }
 }

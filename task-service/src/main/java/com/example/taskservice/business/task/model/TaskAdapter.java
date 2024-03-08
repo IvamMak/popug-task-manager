@@ -48,8 +48,7 @@ class TaskAdapter implements TaskDao {
     }
 
     private Task fromEntity(TaskEntity taskEntity) {
-        return new Task(taskEntity.getId(), taskEntity.getDescription(),
-                taskEntity.getStatus(),
-                taskEntity.getUser().getPublicId());
+        return new Task(taskEntity.getId(), taskEntity.getPublicId(), taskEntity.getDescription(),
+                taskEntity.getStatus(), taskEntity.getUser().getPublicId());
     }
 }

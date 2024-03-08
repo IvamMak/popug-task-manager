@@ -23,6 +23,11 @@ spring:
           predicates:
             - Path=/api/task/**
           filters: AuthenticationFilter
+        - id: schema-registry
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/schema/**
+          filters: AuthenticationFilter
   main:
     allow-bean-definition-overriding: true
 
