@@ -1,13 +1,12 @@
-package com.example.taskservice.kafka.producer;
+package com.example.taskservice.kafka;
 
-import com.example.taskservice.kafka.event.Topics;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
-public class Producer extends ProducerConfig {
+public class Producer {
 
     @Bean
     public NewTopic taskCompletedTopic() {

@@ -1,7 +1,7 @@
-package com.example.authservice.user.servcie;
+package com.example.authservice.user.service;
 
 import com.example.authservice.user.domain.User;
-import com.example.authservice.user.servcie.dao.UserDao;
+import com.example.authservice.user.service.dao.UserDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.example.authservice.user.model;
 
 import com.example.authservice.user.domain.User;
-import com.example.authservice.user.servcie.dao.UserDao;
+import com.example.authservice.user.service.dao.UserDao;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

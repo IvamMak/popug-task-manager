@@ -8,9 +8,6 @@ import com.example.taskservice.business.task.service.event.TaskCreatedPayload;
 import com.example.taskservice.business.user.domain.User;
 import com.example.taskservice.business.user.servcie.FindUserService;
 import com.example.taskservice.business.user.servcie.exception.UserNotFoundException;
-import com.example.taskservice.kafka.event.Event;
-import com.example.taskservice.kafka.event.Events;
-import com.example.taskservice.kafka.event.Topics;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -18,7 +15,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,7 +42,7 @@ public class CreateTaskUseCaseImpl implements CreateTaskUseCase {
     @SneakyThrows
     private void sendMessage(Task task, User user) {
         TaskCreatedPayload taskCreatedPayload = new TaskCreatedPayload(task.getPublicId(), user.getPublicId(), task.getExecutorId());
-        Event event = new Event(LocalDateTime.now(), Events.TASK_CREATED_V1, taskCreatedPayload);
-        template.send(Topics.TASK_STREAM, mapper.writeValueAsString(event));
+//        Event event = new Event(LocalDateTime.now(), Events.TASK_CREATED_V1, taskCreatedPayload);
+//        template.send(Topics.TASK_STREAM, mapper.writeValueAsString(event));
     }
 }

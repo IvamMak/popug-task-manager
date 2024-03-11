@@ -10,17 +10,12 @@ import com.example.taskservice.business.task.service.exception.NotCompletedTaskW
 import com.example.taskservice.business.task.service.exception.WrongTaskUserException;
 import com.example.taskservice.business.user.servcie.FindUserService;
 import com.example.taskservice.business.user.servcie.exception.UserNotFoundException;
-import com.example.taskservice.kafka.event.Event;
-import com.example.taskservice.kafka.event.Events;
-import com.example.taskservice.kafka.event.Topics;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -58,7 +53,7 @@ public class CompleteTaskUseCaseImpl implements CompleteTaskUseCase {
     @SneakyThrows
     private void sendEvent(Task task) {
         TaskCompletedPayload taskCompletedPayload = new TaskCompletedPayload(task.getPublicId(), task.getExecutorId());
-        Event event = new Event(LocalDateTime.now(), Events.TASK_COMPLETED_V1, taskCompletedPayload);
-        template.send(Topics.TASK_COMPLETED, objectMapper.writeValueAsString(event));
+//        Event event = new Event(LocalDateTime.now(), Events.TASK_COMPLETED_V1, taskCompletedPayload);
+//        template.send(Topics.TASK_COMPLETED, UUID.randomUUID().toString(), objectMapper.writeValueAsString(event));
     }
 }

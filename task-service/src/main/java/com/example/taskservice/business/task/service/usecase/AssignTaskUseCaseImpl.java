@@ -4,22 +4,16 @@ import com.example.taskservice.business.task.domain.Task;
 import com.example.taskservice.business.task.rest.usecase.AssignTaskUseCase;
 import com.example.taskservice.business.task.service.SaveTaskService;
 import com.example.taskservice.business.task.service.dao.TaskDao;
-import com.example.taskservice.business.task.service.event.TaskAssignedPayload;
 import com.example.taskservice.business.user.domain.User;
 import com.example.taskservice.business.user.domain.UserRole;
 import com.example.taskservice.business.user.servcie.FindUserService;
 import com.example.taskservice.business.user.servcie.exception.UserNotFoundException;
-import com.example.taskservice.kafka.event.Event;
-import com.example.taskservice.kafka.event.Events;
-import com.example.taskservice.kafka.event.Topics;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -57,21 +51,21 @@ public class AssignTaskUseCaseImpl implements AssignTaskUseCase {
 
     @SneakyThrows
     private void sendEvents(User user, List<Task> tasks) {
-        List<String> events = tasks.stream()
-                .map(task -> {
-                    TaskAssignedPayload taskAssignedPayload =
-                            new TaskAssignedPayload(task.getPublicId(), user.getPublicId(), task.getExecutorId());
-                    return new Event(LocalDateTime.now(), Events.TASK_ASSIGNED_V1, taskAssignedPayload);
-                }).map(this::map)
-                .toList();
-        template.send(Topics.TASK_ASSIGNED, events);
+//        List<String> events = tasks.stream()
+//                .map(task -> {
+//                    TaskAssignedPayload taskAssignedPayload =
+//                            new TaskAssignedPayload(task.getPublicId(), user.getPublicId(), task.getExecutorId());
+//                    return new Event(LocalDateTime.now(), Events.TASK_ASSIGNED_V1, taskAssignedPayload);
+//                }).map(this::map)
+//                .toList();
+//        template.send(Topics.TASK_ASSIGNED, UUID.randomUUID().toString(), events);
     }
 
-    private String map(Event value) {
-        try {
-            return mapper.writeValueAsString(value);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private String map(Event value) {
+//        try {
+//            return mapper.writeValueAsString(value);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

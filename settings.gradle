@@ -1,0 +1,8 @@
+rootProject.name = 'task-manager'
+
+include ':api-gateway'
+include ':auth-service'
+include ':config-server'
+include ':eureka'
+include ':schema-registry'
+include ':task-service'

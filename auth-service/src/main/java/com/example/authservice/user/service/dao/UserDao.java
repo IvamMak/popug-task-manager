@@ -1,4 +1,4 @@
-package com.example.authservice.user.servcie.dao;
+package com.example.authservice.user.service.dao;
 
 
 import com.example.authservice.user.domain.User;

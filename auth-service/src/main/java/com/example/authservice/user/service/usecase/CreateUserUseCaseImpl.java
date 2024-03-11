@@ -1,33 +1,34 @@
-package com.example.authservice.user.servcie.usecase;
+package com.example.authservice.user.service.usecase;
 
-import com.example.authservice.user.servcie.event.UserCreatedPayload;
-import com.example.authservice.user.servcie.event.UserCreatedEvent;
-import com.example.authservice.kafka.event.Events;
-import com.example.authservice.kafka.event.Topics;
+import com.example.authservice.kafka.Events;
+import com.example.authservice.kafka.Topics;
 import com.example.authservice.user.domain.User;
 import com.example.authservice.user.exception.UserAlreadyExistException;
 import com.example.authservice.user.rest.model.CreateUserRequest;
 import com.example.authservice.user.rest.usecase.CreateUserUseCase;
-import com.example.authservice.user.servcie.FindUserService;
-import com.example.authservice.user.servcie.dao.UserDao;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.authservice.user.service.FindUserService;
+import com.example.authservice.user.service.dao.UserDao;
+import com.example.schemaregistry.user.usercreated.UserCreatedEvent;
+import com.example.schemaregistry.user.usercreated.UserCreatedPayload;
+import com.example.schemaregistry.user.usercreated.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
     private final UserDao dao;
-    private final ObjectMapper objectMapper;
     private final FindUserService findUserService;
     private final PasswordEncoder passwordEncoder;
-    private final KafkaTemplate<String, String> template;
+    private final KafkaTemplate<String, UserCreatedEvent> template;
 
     @Override
     public User create(CreateUserRequest request) {
@@ -50,9 +51,15 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
 
     @SneakyThrows
     private void sendEvent(User user) {
-        UserCreatedPayload userCreatedPayload =
-                new UserCreatedPayload(user.getPublicId(), user.getUsername(), user.getUserRole());
-        UserCreatedEvent userCreatedEvent = new UserCreatedEvent(LocalDateTime.now(), Events.USER_CREATED_V1, userCreatedPayload);
-        template.send(Topics.USER_STREAM, objectMapper.writeValueAsString(userCreatedEvent));
+        UserCreatedPayload payload = UserCreatedPayload.newBuilder()
+                .setUsername(user.getUsername())
+                .setPublicId(user.getPublicId())
+                .setUserRole(UserRole.valueOf(user.getUserRole().name()))
+                .build();
+        UserCreatedEvent event = UserCreatedEvent.newBuilder()
+                .setEventName(Events.USER_CREATED_V1)
+                .setEventPayload(payload)
+                .build();
+        template.send(Topics.USER_STREAM, UUID.randomUUID().toString(), event);
     }
 }

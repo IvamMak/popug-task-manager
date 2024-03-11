@@ -1,4 +1,4 @@
-package com.example.taskservice.kafka.event;
+package com.example.taskservice.kafka;
 
 public class Topics {
     public final static String TASK_STREAM = "task-stream";
