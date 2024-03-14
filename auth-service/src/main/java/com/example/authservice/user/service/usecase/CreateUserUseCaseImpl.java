@@ -6,7 +6,6 @@ import com.example.authservice.user.rest.model.CreateUserRequest;
 import com.example.authservice.user.rest.usecase.CreateUserUseCase;
 import com.example.authservice.user.service.FindUserService;
 import com.example.authservice.user.service.dao.UserDao;
-import com.example.schemaregistry.Events;
 import com.example.schemaregistry.Topics;
 import com.example.schemaregistry.user.usercreated.UserCreatedEvent;
 import com.example.schemaregistry.user.usercreated.UserCreatedPayload;

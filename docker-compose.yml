@@ -19,6 +19,24 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: task
 
+  mysql-accounting:
+    container_name: accounting-db
+    image: mysql
+    ports:
+      - "3337:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: accounting
+
+  mysql-analytics:
+    container_name: analytics-db
+    image: mysql
+    ports:
+      - "3338:3308"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: analytics
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
