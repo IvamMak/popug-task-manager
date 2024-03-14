@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "version": "1",
+  "name": "TaskCreatedEvent",
+  "namespace": "com.example.schemaregistry.task",
+  "fields": [
+    {
+      "name": "publicId",
+      "type": "string"
+    },
+    {
+      "name": "executorId",
+      "type": "string"
+    },
+    {
+      "name": "creatorId",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    }
+  ]
+}

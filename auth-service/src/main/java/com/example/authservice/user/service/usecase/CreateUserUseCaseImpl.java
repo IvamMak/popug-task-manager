@@ -1,13 +1,13 @@
 package com.example.authservice.user.service.usecase;
 
-import com.example.authservice.kafka.Events;
-import com.example.authservice.kafka.Topics;
 import com.example.authservice.user.domain.User;
 import com.example.authservice.user.exception.UserAlreadyExistException;
 import com.example.authservice.user.rest.model.CreateUserRequest;
 import com.example.authservice.user.rest.usecase.CreateUserUseCase;
 import com.example.authservice.user.service.FindUserService;
 import com.example.authservice.user.service.dao.UserDao;
+import com.example.schemaregistry.Events;
+import com.example.schemaregistry.Topics;
 import com.example.schemaregistry.user.usercreated.UserCreatedEvent;
 import com.example.schemaregistry.user.usercreated.UserCreatedPayload;
 import com.example.schemaregistry.user.usercreated.UserRole;
@@ -57,7 +57,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .setUserRole(UserRole.valueOf(user.getUserRole().name()))
                 .build();
         UserCreatedEvent event = UserCreatedEvent.newBuilder()
-                .setEventName(Events.USER_CREATED_V1)
+                .setEventName(Topics.USER_STREAM)
                 .setEventPayload(payload)
                 .build();
         template.send(Topics.USER_STREAM, UUID.randomUUID().toString(), event);

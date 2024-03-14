@@ -23,12 +23,18 @@ spring:
         schema:
           registry:
             url: "http://localhost:8081"
-#    consumer:
-#      group-id: "group"
-#      properties:
-#        schema:
-#          registry:
-#            url: "http://localhost:8081"
+        specific:
+          avro:
+            reader: true
+    consumer:
+      group-id: "group"
+      properties:
+        schema:
+          registry:
+            url: "http://localhost:8081"
+        specific:
+          avro:
+            reader: true
 
 eureka:
   instance:

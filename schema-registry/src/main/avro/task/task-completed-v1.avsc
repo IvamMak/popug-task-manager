@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "version": "1",
+  "name": "TaskCompletedEvent",
+  "namespace": "com.example.schemaregistry.task",
+  "fields": [
+    {
+      "name": "publicId",
+      "type": "string"
+    },
+    {
+      "name": "executorId",
+      "type": "string"
+    }
+  ]
+}
+
+private final String publicId;
+private final String assignerId;
+private final String executorId;

@@ -5,7 +5,7 @@ import com.example.schemaregistry.user.usercreated.UserCreatedPayload;
 import com.example.taskservice.business.user.domain.User;
 import com.example.taskservice.business.user.domain.UserRole;
 import com.example.taskservice.business.user.servcie.SaveUserService;
-import com.example.taskservice.kafka.Topics;
+import com.example.schemaregistry.Topics;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

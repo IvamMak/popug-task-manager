@@ -14,13 +14,15 @@ public class Task {
     private final String publicId;
     private final String description;
     private TaskStatus status;
+    private final String creatorId;
     private String executorId;
 
-    public Task(String description, List<String> userIds) {
+    public Task(String creatorId, String description, List<String> userIds) {
         this.description = description;
         this.publicId = UUID.randomUUID().toString();
         this.status = TaskStatus.IN_PROGRESS;
         this.executorId = getRandomId(userIds);
+        this.creatorId = creatorId;
     }
 
     public void complete() {
