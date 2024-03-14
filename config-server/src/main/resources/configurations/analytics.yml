@@ -1,12 +1,12 @@
 server:
-  port: 8090
+  port: 8093
 
 spring:
   application:
-    name: auth-service
+    name: analytics
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/user?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3336/analytics?characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
     username: root
     password: root
   jpa:
@@ -16,13 +16,15 @@ spring:
       ddl-auto: update
   kafka:
     bootstrap-servers: "http://localhost:29092"
-    producer:
-      keySerializer: "org.apache.kafka.common.serialization.StringSerializer"
-      valueSerializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+    consumer:
+      group-id: "group"
       properties:
         schema:
           registry:
             url: "http://localhost:8081"
+        specific:
+          avro:
+            reader: true
 
 eureka:
   instance:
