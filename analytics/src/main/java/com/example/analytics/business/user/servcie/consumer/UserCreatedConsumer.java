@@ -1,4 +1,4 @@
-package com.example.analytics.business.user.brokerconsumer;
+package com.example.analytics.business.user.servcie.consumer;
 
 import com.example.analytics.business.user.domain.User;
 import com.example.analytics.business.user.domain.UserRole;
