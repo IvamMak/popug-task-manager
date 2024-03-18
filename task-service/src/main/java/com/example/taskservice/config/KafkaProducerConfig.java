@@ -23,7 +23,7 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic taskAssignedTopic() {
-        return TopicBuilder.name(Topics.TASK_ASSIGNED)
+        return TopicBuilder.name(Topics.TASK_SHUFFLE)
                 .build();
     }
 }

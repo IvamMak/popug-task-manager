@@ -2,23 +2,32 @@
   "type": "record",
   "version": "1",
   "name": "TaskCreatedEvent",
-  "namespace": "com.example.schemaregistry.task",
+  "namespace": "com.example.schemaregistry.task.created",
   "fields": [
+    {"name": "eventName", "type": "string"},
     {
-      "name": "publicId",
-      "type": "string"
-    },
-    {
-      "name": "executorId",
-      "type": "string"
-    },
-    {
-      "name": "creatorId",
-      "type": "string"
-    },
-    {
-      "name": "description",
-      "type": "string"
+      "name": "eventPayload",
+      "type": {
+        "type": "record", "name": "TaskCreatedPayload",
+        "fields": [
+          {
+            "name": "publicId",
+            "type": "string"
+          },
+          {
+            "name": "executorId",
+            "type": "string"
+          },
+          {
+            "name": "creatorId",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ]
+      }
     }
   ]
 }

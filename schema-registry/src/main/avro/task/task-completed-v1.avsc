@@ -2,19 +2,24 @@
   "type": "record",
   "version": "1",
   "name": "TaskCompletedEvent",
-  "namespace": "com.example.schemaregistry.task",
+  "namespace": "com.example.schemaregistry.task.completed",
   "fields": [
+    {"name": "eventName", "type": "string"},
     {
-      "name": "publicId",
-      "type": "string"
-    },
-    {
-      "name": "executorId",
-      "type": "string"
+      "name": "eventPayload",
+      "type": {
+        "type": "record", "name": "TaskCompletedPayload",
+        "fields": [
+          {
+            "name": "publicId",
+            "type": "string"
+          },
+          {
+            "name": "executorId",
+            "type": "string"
+          }
+        ]
+      }
     }
   ]
 }
-
-private final String publicId;
-private final String assignerId;
-private final String executorId;

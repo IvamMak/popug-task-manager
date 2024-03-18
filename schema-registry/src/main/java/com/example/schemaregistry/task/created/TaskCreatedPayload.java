@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.example.schemaregistry.task;
+package com.example.schemaregistry.task.created;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -13,24 +13,24 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2115092565803816317L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TaskCreatedEvent\",\"namespace\":\"com.example.schemaregistry.task\",\"fields\":[{\"name\":\"publicId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"executorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"creatorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"description\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}],\"version\":\"1\"}");
+public class TaskCreatedPayload extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 2040646893773642373L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TaskCreatedPayload\",\"namespace\":\"com.example.schemaregistry.task.created\",\"fields\":[{\"name\":\"publicId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"executorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"creatorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"description\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<TaskCreatedEvent> ENCODER =
-      new BinaryMessageEncoder<TaskCreatedEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<TaskCreatedPayload> ENCODER =
+      new BinaryMessageEncoder<TaskCreatedPayload>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<TaskCreatedEvent> DECODER =
-      new BinaryMessageDecoder<TaskCreatedEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<TaskCreatedPayload> DECODER =
+      new BinaryMessageDecoder<TaskCreatedPayload>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<TaskCreatedEvent> getEncoder() {
+  public static BinaryMessageEncoder<TaskCreatedPayload> getEncoder() {
     return ENCODER;
   }
 
@@ -38,7 +38,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<TaskCreatedEvent> getDecoder() {
+  public static BinaryMessageDecoder<TaskCreatedPayload> getDecoder() {
     return DECODER;
   }
 
@@ -47,12 +47,12 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<TaskCreatedEvent> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<TaskCreatedEvent>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<TaskCreatedPayload> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<TaskCreatedPayload>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this TaskCreatedEvent to a ByteBuffer.
+   * Serializes this TaskCreatedPayload to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -61,12 +61,12 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Deserializes a TaskCreatedEvent from a ByteBuffer.
+   * Deserializes a TaskCreatedPayload from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a TaskCreatedEvent instance decoded from the given buffer
+   * @return a TaskCreatedPayload instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static TaskCreatedEvent fromByteBuffer(
+  public static TaskCreatedPayload fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -81,7 +81,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public TaskCreatedEvent() {}
+  public TaskCreatedPayload() {}
 
   /**
    * All-args constructor.
@@ -90,7 +90,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
    * @param creatorId The new value for creatorId
    * @param description The new value for description
    */
-  public TaskCreatedEvent(java.lang.String publicId, java.lang.String executorId, java.lang.String creatorId, java.lang.String description) {
+  public TaskCreatedPayload(java.lang.String publicId, java.lang.String executorId, java.lang.String creatorId, java.lang.String description) {
     this.publicId = publicId;
     this.executorId = executorId;
     this.creatorId = creatorId;
@@ -191,45 +191,45 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Creates a new TaskCreatedEvent RecordBuilder.
-   * @return A new TaskCreatedEvent RecordBuilder
+   * Creates a new TaskCreatedPayload RecordBuilder.
+   * @return A new TaskCreatedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCreatedEvent.Builder newBuilder() {
-    return new com.example.schemaregistry.task.TaskCreatedEvent.Builder();
+  public static com.example.schemaregistry.task.created.TaskCreatedPayload.Builder newBuilder() {
+    return new com.example.schemaregistry.task.created.TaskCreatedPayload.Builder();
   }
 
   /**
-   * Creates a new TaskCreatedEvent RecordBuilder by copying an existing Builder.
+   * Creates a new TaskCreatedPayload RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new TaskCreatedEvent RecordBuilder
+   * @return A new TaskCreatedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCreatedEvent.Builder newBuilder(com.example.schemaregistry.task.TaskCreatedEvent.Builder other) {
+  public static com.example.schemaregistry.task.created.TaskCreatedPayload.Builder newBuilder(com.example.schemaregistry.task.created.TaskCreatedPayload.Builder other) {
     if (other == null) {
-      return new com.example.schemaregistry.task.TaskCreatedEvent.Builder();
+      return new com.example.schemaregistry.task.created.TaskCreatedPayload.Builder();
     } else {
-      return new com.example.schemaregistry.task.TaskCreatedEvent.Builder(other);
+      return new com.example.schemaregistry.task.created.TaskCreatedPayload.Builder(other);
     }
   }
 
   /**
-   * Creates a new TaskCreatedEvent RecordBuilder by copying an existing TaskCreatedEvent instance.
+   * Creates a new TaskCreatedPayload RecordBuilder by copying an existing TaskCreatedPayload instance.
    * @param other The existing instance to copy.
-   * @return A new TaskCreatedEvent RecordBuilder
+   * @return A new TaskCreatedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCreatedEvent.Builder newBuilder(com.example.schemaregistry.task.TaskCreatedEvent other) {
+  public static com.example.schemaregistry.task.created.TaskCreatedPayload.Builder newBuilder(com.example.schemaregistry.task.created.TaskCreatedPayload other) {
     if (other == null) {
-      return new com.example.schemaregistry.task.TaskCreatedEvent.Builder();
+      return new com.example.schemaregistry.task.created.TaskCreatedPayload.Builder();
     } else {
-      return new com.example.schemaregistry.task.TaskCreatedEvent.Builder(other);
+      return new com.example.schemaregistry.task.created.TaskCreatedPayload.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for TaskCreatedEvent instances.
+   * RecordBuilder for TaskCreatedPayload instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TaskCreatedEvent>
-    implements org.apache.avro.data.RecordBuilder<TaskCreatedEvent> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TaskCreatedPayload>
+    implements org.apache.avro.data.RecordBuilder<TaskCreatedPayload> {
 
     private java.lang.String publicId;
     private java.lang.String executorId;
@@ -245,7 +245,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.example.schemaregistry.task.TaskCreatedEvent.Builder other) {
+    private Builder(com.example.schemaregistry.task.created.TaskCreatedPayload.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.publicId)) {
         this.publicId = data().deepCopy(fields()[0].schema(), other.publicId);
@@ -266,10 +266,10 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-     * Creates a Builder by copying an existing TaskCreatedEvent instance
+     * Creates a Builder by copying an existing TaskCreatedPayload instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.example.schemaregistry.task.TaskCreatedEvent other) {
+    private Builder(com.example.schemaregistry.task.created.TaskCreatedPayload other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.publicId)) {
         this.publicId = data().deepCopy(fields()[0].schema(), other.publicId);
@@ -303,7 +303,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'publicId'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder setPublicId(java.lang.String value) {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder setPublicId(java.lang.String value) {
       validate(fields()[0], value);
       this.publicId = value;
       fieldSetFlags()[0] = true;
@@ -323,7 +323,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'publicId' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder clearPublicId() {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder clearPublicId() {
       publicId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -343,7 +343,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'executorId'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder setExecutorId(java.lang.String value) {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder setExecutorId(java.lang.String value) {
       validate(fields()[1], value);
       this.executorId = value;
       fieldSetFlags()[1] = true;
@@ -363,7 +363,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'executorId' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder clearExecutorId() {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder clearExecutorId() {
       executorId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -383,7 +383,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'creatorId'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder setCreatorId(java.lang.String value) {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder setCreatorId(java.lang.String value) {
       validate(fields()[2], value);
       this.creatorId = value;
       fieldSetFlags()[2] = true;
@@ -403,7 +403,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'creatorId' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder clearCreatorId() {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder clearCreatorId() {
       creatorId = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -423,7 +423,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'description'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder setDescription(java.lang.String value) {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder setDescription(java.lang.String value) {
       validate(fields()[3], value);
       this.description = value;
       fieldSetFlags()[3] = true;
@@ -443,7 +443,7 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'description' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCreatedEvent.Builder clearDescription() {
+    public com.example.schemaregistry.task.created.TaskCreatedPayload.Builder clearDescription() {
       description = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -451,9 +451,9 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
 
     @Override
     @SuppressWarnings("unchecked")
-    public TaskCreatedEvent build() {
+    public TaskCreatedPayload build() {
       try {
-        TaskCreatedEvent record = new TaskCreatedEvent();
+        TaskCreatedPayload record = new TaskCreatedPayload();
         record.publicId = fieldSetFlags()[0] ? this.publicId : (java.lang.String) defaultValue(fields()[0]);
         record.executorId = fieldSetFlags()[1] ? this.executorId : (java.lang.String) defaultValue(fields()[1]);
         record.creatorId = fieldSetFlags()[2] ? this.creatorId : (java.lang.String) defaultValue(fields()[2]);
@@ -468,8 +468,8 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<TaskCreatedEvent>
-    WRITER$ = (org.apache.avro.io.DatumWriter<TaskCreatedEvent>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<TaskCreatedPayload>
+    WRITER$ = (org.apache.avro.io.DatumWriter<TaskCreatedPayload>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -477,8 +477,8 @@ public class TaskCreatedEvent extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<TaskCreatedEvent>
-    READER$ = (org.apache.avro.io.DatumReader<TaskCreatedEvent>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<TaskCreatedPayload>
+    READER$ = (org.apache.avro.io.DatumReader<TaskCreatedPayload>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

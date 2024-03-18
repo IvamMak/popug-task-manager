@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.example.schemaregistry.task;
+package com.example.schemaregistry.task.completed;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -13,24 +13,24 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5844761573589588176L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TaskCompletedEvent\",\"namespace\":\"com.example.schemaregistry.task\",\"fields\":[{\"name\":\"publicId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"executorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}],\"version\":\"1\"}");
+public class TaskCompletedPayload extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 4492589435635068494L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TaskCompletedPayload\",\"namespace\":\"com.example.schemaregistry.task.completed\",\"fields\":[{\"name\":\"publicId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"executorId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<TaskCompletedEvent> ENCODER =
-      new BinaryMessageEncoder<TaskCompletedEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<TaskCompletedPayload> ENCODER =
+      new BinaryMessageEncoder<TaskCompletedPayload>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<TaskCompletedEvent> DECODER =
-      new BinaryMessageDecoder<TaskCompletedEvent>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<TaskCompletedPayload> DECODER =
+      new BinaryMessageDecoder<TaskCompletedPayload>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<TaskCompletedEvent> getEncoder() {
+  public static BinaryMessageEncoder<TaskCompletedPayload> getEncoder() {
     return ENCODER;
   }
 
@@ -38,7 +38,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<TaskCompletedEvent> getDecoder() {
+  public static BinaryMessageDecoder<TaskCompletedPayload> getDecoder() {
     return DECODER;
   }
 
@@ -47,12 +47,12 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<TaskCompletedEvent> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<TaskCompletedEvent>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<TaskCompletedPayload> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<TaskCompletedPayload>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this TaskCompletedEvent to a ByteBuffer.
+   * Serializes this TaskCompletedPayload to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -61,12 +61,12 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
   }
 
   /**
-   * Deserializes a TaskCompletedEvent from a ByteBuffer.
+   * Deserializes a TaskCompletedPayload from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a TaskCompletedEvent instance decoded from the given buffer
+   * @return a TaskCompletedPayload instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static TaskCompletedEvent fromByteBuffer(
+  public static TaskCompletedPayload fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -79,14 +79,14 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public TaskCompletedEvent() {}
+  public TaskCompletedPayload() {}
 
   /**
    * All-args constructor.
    * @param publicId The new value for publicId
    * @param executorId The new value for executorId
    */
-  public TaskCompletedEvent(java.lang.String publicId, java.lang.String executorId) {
+  public TaskCompletedPayload(java.lang.String publicId, java.lang.String executorId) {
     this.publicId = publicId;
     this.executorId = executorId;
   }
@@ -147,45 +147,45 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
   }
 
   /**
-   * Creates a new TaskCompletedEvent RecordBuilder.
-   * @return A new TaskCompletedEvent RecordBuilder
+   * Creates a new TaskCompletedPayload RecordBuilder.
+   * @return A new TaskCompletedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCompletedEvent.Builder newBuilder() {
-    return new com.example.schemaregistry.task.TaskCompletedEvent.Builder();
+  public static com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder newBuilder() {
+    return new com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder();
   }
 
   /**
-   * Creates a new TaskCompletedEvent RecordBuilder by copying an existing Builder.
+   * Creates a new TaskCompletedPayload RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new TaskCompletedEvent RecordBuilder
+   * @return A new TaskCompletedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCompletedEvent.Builder newBuilder(com.example.schemaregistry.task.TaskCompletedEvent.Builder other) {
+  public static com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder newBuilder(com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder other) {
     if (other == null) {
-      return new com.example.schemaregistry.task.TaskCompletedEvent.Builder();
+      return new com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder();
     } else {
-      return new com.example.schemaregistry.task.TaskCompletedEvent.Builder(other);
+      return new com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder(other);
     }
   }
 
   /**
-   * Creates a new TaskCompletedEvent RecordBuilder by copying an existing TaskCompletedEvent instance.
+   * Creates a new TaskCompletedPayload RecordBuilder by copying an existing TaskCompletedPayload instance.
    * @param other The existing instance to copy.
-   * @return A new TaskCompletedEvent RecordBuilder
+   * @return A new TaskCompletedPayload RecordBuilder
    */
-  public static com.example.schemaregistry.task.TaskCompletedEvent.Builder newBuilder(com.example.schemaregistry.task.TaskCompletedEvent other) {
+  public static com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder newBuilder(com.example.schemaregistry.task.completed.TaskCompletedPayload other) {
     if (other == null) {
-      return new com.example.schemaregistry.task.TaskCompletedEvent.Builder();
+      return new com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder();
     } else {
-      return new com.example.schemaregistry.task.TaskCompletedEvent.Builder(other);
+      return new com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for TaskCompletedEvent instances.
+   * RecordBuilder for TaskCompletedPayload instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TaskCompletedEvent>
-    implements org.apache.avro.data.RecordBuilder<TaskCompletedEvent> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TaskCompletedPayload>
+    implements org.apache.avro.data.RecordBuilder<TaskCompletedPayload> {
 
     private java.lang.String publicId;
     private java.lang.String executorId;
@@ -199,7 +199,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.example.schemaregistry.task.TaskCompletedEvent.Builder other) {
+    private Builder(com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.publicId)) {
         this.publicId = data().deepCopy(fields()[0].schema(), other.publicId);
@@ -212,10 +212,10 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
     }
 
     /**
-     * Creates a Builder by copying an existing TaskCompletedEvent instance
+     * Creates a Builder by copying an existing TaskCompletedPayload instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.example.schemaregistry.task.TaskCompletedEvent other) {
+    private Builder(com.example.schemaregistry.task.completed.TaskCompletedPayload other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.publicId)) {
         this.publicId = data().deepCopy(fields()[0].schema(), other.publicId);
@@ -241,7 +241,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'publicId'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCompletedEvent.Builder setPublicId(java.lang.String value) {
+    public com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder setPublicId(java.lang.String value) {
       validate(fields()[0], value);
       this.publicId = value;
       fieldSetFlags()[0] = true;
@@ -261,7 +261,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'publicId' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCompletedEvent.Builder clearPublicId() {
+    public com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder clearPublicId() {
       publicId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -281,7 +281,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'executorId'.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCompletedEvent.Builder setExecutorId(java.lang.String value) {
+    public com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder setExecutorId(java.lang.String value) {
       validate(fields()[1], value);
       this.executorId = value;
       fieldSetFlags()[1] = true;
@@ -301,7 +301,7 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'executorId' field.
       * @return This builder.
       */
-    public com.example.schemaregistry.task.TaskCompletedEvent.Builder clearExecutorId() {
+    public com.example.schemaregistry.task.completed.TaskCompletedPayload.Builder clearExecutorId() {
       executorId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -309,9 +309,9 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
 
     @Override
     @SuppressWarnings("unchecked")
-    public TaskCompletedEvent build() {
+    public TaskCompletedPayload build() {
       try {
-        TaskCompletedEvent record = new TaskCompletedEvent();
+        TaskCompletedPayload record = new TaskCompletedPayload();
         record.publicId = fieldSetFlags()[0] ? this.publicId : (java.lang.String) defaultValue(fields()[0]);
         record.executorId = fieldSetFlags()[1] ? this.executorId : (java.lang.String) defaultValue(fields()[1]);
         return record;
@@ -324,8 +324,8 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<TaskCompletedEvent>
-    WRITER$ = (org.apache.avro.io.DatumWriter<TaskCompletedEvent>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<TaskCompletedPayload>
+    WRITER$ = (org.apache.avro.io.DatumWriter<TaskCompletedPayload>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -333,8 +333,8 @@ public class TaskCompletedEvent extends org.apache.avro.specific.SpecificRecordB
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<TaskCompletedEvent>
-    READER$ = (org.apache.avro.io.DatumReader<TaskCompletedEvent>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<TaskCompletedPayload>
+    READER$ = (org.apache.avro.io.DatumReader<TaskCompletedPayload>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

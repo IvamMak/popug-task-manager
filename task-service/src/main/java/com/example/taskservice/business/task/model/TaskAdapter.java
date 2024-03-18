@@ -3,7 +3,7 @@ package com.example.taskservice.business.task.model;
 import com.example.taskservice.business.task.domain.Task;
 import com.example.taskservice.business.task.service.dao.TaskDao;
 import com.example.taskservice.business.user.domain.User;
-import com.example.taskservice.business.user.model.UserEntity;
+import com.example.taskservice.business.user.model.UserAdapter;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -28,27 +28,30 @@ class TaskAdapter implements TaskDao {
     @Override
     public List<Task> findAllInProgressTask() {
         return repository.findAllInProgressTask().stream()
-                .map(this::fromEntity)
+                .map(TaskAdapter::fromEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Task> findNotCompletedTask(Long id) {
         return repository.findNotCompletedTask(id)
-                .map(this::fromEntity);
+                .map(TaskAdapter::fromEntity);
     }
 
     private TaskEntity toEntity(Task task, User user) {
         TaskEntity taskEntity = new TaskEntity();
         taskEntity.setId(task.getId());
+        taskEntity.setCreatorId(task.getCreatorId());
+        taskEntity.setExecutorId(task.getExecutorId());
+        taskEntity.setPublicId(task.getPublicId());
         taskEntity.setDescription(task.getDescription());
-        taskEntity.setUser(mapper.map(user, UserEntity.class));
+        taskEntity.setUser(UserAdapter.toEntity(user));
         taskEntity.setStatus(task.getStatus());
         return taskEntity;
     }
 
-    private Task fromEntity(TaskEntity taskEntity) {
+    public static Task fromEntity(TaskEntity taskEntity) {
         return new Task(taskEntity.getId(), taskEntity.getPublicId(), taskEntity.getDescription(),
-                taskEntity.getStatus(), taskEntity.getUser().getPublicId());
+                taskEntity.getStatus(), taskEntity.getCreatorId(), taskEntity.getUser().getPublicId());
     }
 }

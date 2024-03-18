@@ -3,7 +3,10 @@ package com.example.taskservice.business.task.model;
 import com.example.taskservice.business.task.domain.TaskStatus;
 import com.example.taskservice.business.user.model.UserEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -21,6 +24,10 @@ public class TaskEntity {
     private Long id;
     @Column(name = "public_id")
     private String publicId;
+    @Column(name = "creator_id")
+    private String creatorId;
+    @Column(name = "executor_id")
+    private String executorId;
     @Column(name = "description")
     private String description;
     @Column(name = "status")

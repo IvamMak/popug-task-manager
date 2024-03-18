@@ -2,20 +2,18 @@ package com.example.taskservice.business.user.model;
 
 import com.example.taskservice.business.user.domain.User;
 import com.example.taskservice.business.user.servcie.dao.UserDao;
+import com.example.taskservice.business.user.servcie.exception.UserNotFoundException;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
 @Service
 @AllArgsConstructor
-class UserAdapter implements UserDao {
+public class UserAdapter implements UserDao {
     private final UserRepository repository;
-    private final ModelMapper mapper;
 
     @Override
     public User save(User user) {
@@ -24,15 +22,10 @@ class UserAdapter implements UserDao {
     }
 
     @Override
-    public Optional<User> find(String username) {
+    public User find(String username) {
         return repository.findByUsername(username)
-                .map(user -> mapper.map(user, User.class));
-    }
-
-    @Override
-    public Optional<User> find(Long userId) {
-        return repository.findById(userId)
-                .map(userEntity -> mapper.map(userEntity, User.class));
+                .map(UserAdapter::fromEntity)
+                .orElseThrow(() -> new UserNotFoundException(username));
     }
 
     @Override
@@ -42,8 +35,21 @@ class UserAdapter implements UserDao {
                 .collect(Collectors.toList());
     }
 
-    private UserEntity toEntity(User user) {
+    @Override
+    public User findByPublicId(String publicId) {
+        return repository.findByPublicId(publicId)
+                .map(UserAdapter::fromEntity)
+                .orElseThrow(() -> new UserNotFoundException(publicId));
+    }
+
+    public static User fromEntity(UserEntity userEntity) {
+        return new User(userEntity.getId(), userEntity.getPublicId(), userEntity.getUsername(),
+                userEntity.getUserRole());
+    }
+
+    public static UserEntity toEntity(User user) {
         UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
         userEntity.setUserRole(user.getUserRole());
         userEntity.setUsername(user.getUsername());
         userEntity.setPublicId(user.getPublicId());

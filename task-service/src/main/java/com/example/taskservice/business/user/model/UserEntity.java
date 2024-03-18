@@ -30,7 +30,7 @@ public class UserEntity implements UserDetails {
     @Column(name = "User_Role")
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<TaskEntity> tasks;
 

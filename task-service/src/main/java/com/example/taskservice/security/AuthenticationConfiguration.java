@@ -10,8 +10,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
@@ -22,9 +20,10 @@ public class AuthenticationConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> findUserService.find(username)
-                .map(user -> setGrantAuthority(username, user))
-                .orElseThrow(() -> new RuntimeException(String.format("User with %s not found", username)));
+        return username -> {
+            com.example.taskservice.business.user.domain.User user = findUserService.find(username);
+            return setGrantAuthority(username, user);
+        };
     }
 
     @Bean
@@ -35,7 +34,8 @@ public class AuthenticationConfiguration {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration configuration) throws Exception {
+    public AuthenticationManager authenticationManager(org.springframework.security.config.annotation.authentication.configuration.
+                                                               AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 

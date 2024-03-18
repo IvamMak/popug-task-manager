@@ -1,5 +1,6 @@
 package com.example.taskservice.business.user.model;
 
+import com.example.taskservice.business.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,4 +20,10 @@ interface UserRepository extends JpaRepository<UserEntity, Long> {
                 WHERE u.user_role = 'POPUG'
             """)
     List<UserEntity> findAllPopugs();
+
+    @Query(nativeQuery = true, value = """
+            SELECT * FROM user u
+                WHERE u.public_id = :publicId
+            """)
+    Optional<UserEntity> findByPublicId(String publicId);
 }

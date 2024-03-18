@@ -2,23 +2,28 @@
   "type": "record",
   "version": "1",
   "name": "TaskAssignedEvent",
-  "namespace": "com.example.schemaregistry.task",
+  "namespace": "com.example.schemaregistry.task.assigned",
   "fields": [
+    {"name": "eventName", "type": "string"},
     {
-      "name": "publicId",
-      "type": "string"
-    },
-    {
-      "name": "assignerId",
-      "type": "string"
-    },
-    {
-      "name": "executorId",
-      "type": "string"
+      "name": "eventPayload",
+      "type": {
+        "type": "record", "name": "TaskAssignedPayload",
+        "fields": [
+          {
+            "name": "publicId",
+            "type": "string"
+          },
+          {
+            "name": "assignerId",
+            "type": "string"
+          },
+          {
+            "name": "executorId",
+            "type": "string"
+          }
+        ]
+      }
     }
   ]
 }
-
-private final String publicId;
-private final String assignerId;
-private final String executorId;

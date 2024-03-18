@@ -3,7 +3,7 @@ package com.example.taskservice.business.task.rest;
 import com.example.taskservice.business.task.domain.Task;
 import com.example.taskservice.business.task.rest.model.CompleteTaskRequest;
 import com.example.taskservice.business.task.rest.model.CreateTaskRequest;
-import com.example.taskservice.business.task.rest.usecase.AssignTaskUseCase;
+import com.example.taskservice.business.task.rest.usecase.ShuffleTaskUseCase;
 import com.example.taskservice.business.task.rest.usecase.CompleteTaskUseCase;
 import com.example.taskservice.business.task.rest.usecase.CreateTaskUseCase;
 import com.example.taskservice.business.task.service.exception.NotCompletedTaskWasNotFindException;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/task")
 @RequiredArgsConstructor
 public class TaskController {
-    private final AssignTaskUseCase assignTaskUseCase;
+    private final ShuffleTaskUseCase shuffleTaskUseCase;
     private final CreateTaskUseCase createTaskUseCase;
     private final CompleteTaskUseCase completeTaskUseCase;
 
@@ -28,9 +28,9 @@ public class TaskController {
         return ResponseEntity.ok(createTaskUseCase.create(authentication.getName(), request));
     }
 
-    @PatchMapping("/assign")
-    public ResponseEntity<String> assign(Authentication authentication) {
-        assignTaskUseCase.assign(authentication.getName());
+    @PatchMapping("/shuffle")
+    public ResponseEntity<String> shuffle(Authentication authentication) {
+        shuffleTaskUseCase.shuffle(authentication.getName());
         return ResponseEntity.ok("Tasks successfully reassigned");
     }
 
