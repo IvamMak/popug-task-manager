@@ -12,4 +12,6 @@ public interface TaskDao {
     List<Task> findAllInProgressTask();
 
     Optional<Task> findNotCompletedTask(Long id);
+
+    long getCountOfTask();
 }

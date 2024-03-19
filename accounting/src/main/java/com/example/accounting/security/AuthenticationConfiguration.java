@@ -20,9 +20,10 @@ public class AuthenticationConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> findUserService.find(username)
-                .map(user -> setGrantAuthority(username, user))
-                .orElseThrow(() -> new RuntimeException(String.format("User with %s not found", username)));
+        return username -> {
+            com.example.accounting.business.user.domain.User user = findUserService.find(username);
+            return setGrantAuthority(username, user);
+        };
     }
 
     @Bean

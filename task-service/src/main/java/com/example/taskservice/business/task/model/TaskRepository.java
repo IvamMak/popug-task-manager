@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 interface TaskRepository extends JpaRepository<TaskEntity, Long> {
+    long countById(Long id);
     @Query(nativeQuery = true, value = """
             SELECT * FROM task t
                 WHERE t.status <> 'COMPLETED'

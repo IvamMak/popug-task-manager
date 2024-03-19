@@ -1,14 +1,13 @@
 package com.example.accounting.business.user.model;
 
 
+import com.example.accounting.business.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
 import java.util.Optional;
 
 interface UserRepository extends JpaRepository<UserEntity, Long> {
-
     @Query(nativeQuery = true, value = """
             SELECT * FROM user u
                 WHERE u.Username = :username
@@ -17,7 +16,7 @@ interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query(nativeQuery = true, value = """
             SELECT * FROM user u
-                WHERE u.user_role = 'POPUG'
+                WHERE u.public_id = :publicId
             """)
-    List<UserEntity> findAllPopugs();
+    Optional<UserEntity> findByPublicId(String publicId);
 }
