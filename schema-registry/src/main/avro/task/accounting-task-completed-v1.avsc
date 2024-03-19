@@ -1,0 +1,33 @@
+{
+  "type": "record",
+  "version": "1",
+  "name": "TaskCompletedAccountingEvent",
+  "namespace": "com.example.schemaregistry.task.completed",
+  "fields": [
+    {"name": "eventName", "type": "string"},
+    {
+      "name": "eventPayload",
+      "type": {
+        "type": "record", "name": "TaskCompletedAccountingPayload",
+        "fields": [
+          {
+            "name": "publicId",
+            "type": "string"
+          },
+          {
+            "name": "executorId",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "double"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
