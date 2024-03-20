@@ -12,13 +12,15 @@ import java.util.UUID;
 public class Task {
     private Long id;
     private final String publicId;
-    private final String description;
+    private final Description description;
     private TaskStatus status;
     private final String creatorId;
     private String executorId;
+    private final String jiraId;
 
-    public Task(String creatorId, String description, List<String> userIds) {
-        this.description = description;
+    public Task(String creatorId, String description, List<String> userIds, String jiraId) {
+        this.description = new Description(description);
+        this.jiraId = jiraId;
         this.publicId = UUID.randomUUID().toString();
         this.status = TaskStatus.IN_PROGRESS;
         this.executorId = getRandomId(userIds);

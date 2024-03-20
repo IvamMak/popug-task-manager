@@ -11,7 +11,13 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic taskCompletedTopic() {
-        return TopicBuilder.name(Topics.TASK_COMPLETED)
+        return TopicBuilder.name(Topics.ACCOUNTING_TASK_COMPLETED_V1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic taskPaymentCycleClosed() {
+        return TopicBuilder.name(Topics.ACCOUNTING_PAYMENT_CYCLE_CLOSED_V1)
                 .build();
     }
 }

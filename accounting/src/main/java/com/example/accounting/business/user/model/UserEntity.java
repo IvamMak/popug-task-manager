@@ -1,5 +1,6 @@
 package com.example.accounting.business.user.model;
 
+import com.example.accounting.business.account.model.AccountEntity;
 import com.example.accounting.business.user.domain.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 @Table(name = "User")
 public class UserEntity implements UserDetails {

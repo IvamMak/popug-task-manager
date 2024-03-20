@@ -1,0 +1,33 @@
+{
+  "type": "record",
+  "version": "1",
+  "name": "PaymentCycleClosedEvent",
+  "namespace": "com.example.schemaregistry.paymentcycle.state",
+  "fields": [
+    {
+      "name": "eventName",
+      "type": "string"
+    },
+    {
+      "name": "eventPayload",
+      "type": {
+        "type": "record",
+        "name": "PaymentCycleClosedPayload",
+        "fields": [
+          {
+            "name": "userPublicId",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "name": "balance",
+            "type": "double"
+          }
+        ]
+      }
+    }
+  ]
+}

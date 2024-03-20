@@ -15,4 +15,8 @@ public class FindTaskService {
     public Optional<Task> findNotCompletedTask(Long id) {
         return dao.findNotCompletedTask(id);
     }
+
+    public long getCountOfTasks() {
+        return dao.getCountOfTask();
+    }
 }

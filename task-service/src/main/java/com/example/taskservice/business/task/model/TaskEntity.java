@@ -3,10 +3,7 @@ package com.example.taskservice.business.task.model;
 import com.example.taskservice.business.task.domain.TaskStatus;
 import com.example.taskservice.business.user.model.UserEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -15,7 +12,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "task")
 public class TaskEntity {
     @Id
@@ -36,6 +34,8 @@ public class TaskEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+    @Column(name = "jira_id")
+    private String jiraId;
 
     @Override
     public boolean equals(Object o) {

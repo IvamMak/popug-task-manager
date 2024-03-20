@@ -1,6 +1,5 @@
 package com.example.accounting.business.account.model;
 
-import com.example.accounting.business.account.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +12,6 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
     @Query(nativeQuery = true, value = """
             SELECT * FROM account a
-                WHERE a.Balance > 0
             """)
-    List<AccountEntity> findAllAccountsWithPositiveBalance();
+    List<AccountEntity> findAllAccounts();
 }
