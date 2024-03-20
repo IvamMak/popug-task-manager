@@ -33,9 +33,12 @@ public class Account {
         this.userId = userId;
     }
 
-    public double applyTransaction(Transaction transaction) {
+    public void applyTransaction(Transaction transaction) {
         balance = transaction.getTransactionType().equals(TransactionType.PAYMENT) ?
-                0.0 : balance + transaction.getAmount();
-        return balance;
+                calculatePaymentResultForNegativeBalance(balance) : balance + transaction.getAmount();
+    }
+
+    private double calculatePaymentResultForNegativeBalance(Double balance) {
+        return balance > 0.0 ? balance : 0.0;
     }
 }

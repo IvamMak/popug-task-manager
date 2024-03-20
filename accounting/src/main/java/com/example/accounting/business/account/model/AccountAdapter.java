@@ -30,7 +30,7 @@ class AccountAdapter implements AccountDao {
 
     @Override
     public List<Account> findAllAccountsWithPositiveBalance() {
-        return repository.findAllAccountsWithPositiveBalance().stream()
+        return repository.findAllAccounts().stream()
                 .map(AccountConverter::fromEntity)
                 .toList();
     }
